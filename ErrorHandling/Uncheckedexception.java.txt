@@ -1,0 +1,8 @@
+class CustomUncheckedException extends RuntimeException {
+
+    //constructor
+   public CustomUncheckedException(String message) {
+        super(message);
+
+}
+}

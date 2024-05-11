@@ -1,0 +1,77 @@
+import java.util.Optional;
+import java.io.IOException;
+
+
+class ErrorHandling {
+//1
+    void handleErrorByThrowingIllegalArgumentException() throws IllegalArgumentException  {
+        throw new IllegalArgumentException();
+    }
+//2
+    void handleErrorByThrowingIllegalArgumentExceptionWithDetailMessage(String message) throws IllegalArgumentException {
+         throw new IllegalArgumentException("This is the detail message.");
+        }
+//3
+    void handleErrorByThrowingAnyCheckedException() throws IOException{
+        
+        throw new IOException("Checked exception thrown");
+
+    }
+//4
+    void handleErrorByThrowingAnyCheckedExceptionWithDetailMessage(String message) throws IOException {
+            throw new IOException("This is the detail message.");
+    }
+//5
+    
+    void handleErrorByThrowingAnyUncheckedException() throws RuntimeException {
+         throw new RuntimeException("Unchecked exception thrown");
+
+    }
+
+    //6 
+    void handleErrorByThrowingAnyUncheckedExceptionWithDetailMessage(String message) throws RuntimeException {
+
+        throw new RuntimeException("This is the detail message.");
+    }
+
+    
+//7
+    void handleErrorByThrowingCustomCheckedException() throws CustomCheckedException {
+    throw new CustomCheckedException("Custom checked exception thrown");
+}
+
+   
+//8
+    void handleErrorByThrowingCustomCheckedExceptionWithDetailMessage(String message) throws CustomCheckedException{
+throw new CustomCheckedException("This is the detail message.");
+        
+    }
+
+    //9
+    void handleErrorByThrowingCustomUncheckedException() throws CustomUncheckedException{
+            throw new CustomUncheckedException("Custom Unchecked exception thrown");
+        }
+    
+
+    //10
+    void handleErrorByThrowingCustomUncheckedExceptionWithDetailMessage(String message) throws CustomUncheckedException
+    {
+       throw new CustomUncheckedException("This is the detail message.");
+    }
+
+    Optional<Integer> handleErrorByReturningOptionalInstance(String integer) {
+
+        try {
+            
+        int parsedValue = Integer.parseInt(integer);
+            
+        return Optional.of(parsedValue);
+            
+        } 
+        catch (NumberFormatException e)
+            {
+                return Optional.empty();
+            }
+    }
+
+}

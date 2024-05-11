@@ -1,0 +1,39 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+
+public class ResistorColor{
+
+
+    //hashmap declaration to store the key value pair , private statuc final : to declare constants in the class that should not be modified, LinkedHashMap : to preserve the order of insertion which is not done is case of HashMap
+    
+    private static final Map<String, Integer> colorToValue = new LinkedHashMap<>();   
+
+    static {
+        colorToValue .put("black",0);
+        colorToValue .put("brown",1);
+        colorToValue .put("red",2);
+        colorToValue .put("orange",3);
+        colorToValue .put("yellow",4);
+        colorToValue .put("green",5);
+        colorToValue .put("blue",6);
+        colorToValue .put("violet",7);
+        colorToValue .put("grey",8);
+        colorToValue .put("white",9);
+        }
+
+//takes the color name as input and responds the corresponding numerical value
+    int colorCode(String color) {
+   Integer value = colorToValue.get(color);
+        if (value == null)
+        throw new IllegalArgumentException("Invalid color: " + color);
+            return value;  
+    }
+
+    //colorToValue.keySet() : retrives the set of keys from the map
+    //toArray(new String[0]) : to store the key(color) from the map to a new array of strings and them it return the color name
+    
+    String[] colors() {
+        return colorToValue.keySet().toArray(new String[0]);
+    }
+}

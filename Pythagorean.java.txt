@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
+class PythagoreanTriplet {
+    private int[] triplet;
+
+    PythagoreanTriplet(int a, int b, int c) {
+        this.triplet = new int[]{a, b, c};
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PythagoreanTriplet that = (PythagoreanTriplet) o;
+        return Arrays.equals(triplet, that.triplet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(triplet);
+    }
+
+    static TripletListBuilder makeTripletsList() {
+        return new TripletListBuilder();
+    }
+
+    static class TripletListBuilder {
+        private int sum;
+        private int maxFactor = -1;
+
+        TripletListBuilder thatSumTo(int sum) {
+            this.sum = sum;
+            return this;
+        }
+
+        TripletListBuilder withFactorsLessThanOrEqualTo(int maxFactor) {
+            this.maxFactor = maxFactor;
+            return this;
+        }
+
+        boolean isPythagoreanTriplet(int a, int b, int c) {
+            if (a > b || b > c)
+                return false;
+            if (a < 1 || b < 1 || c < 1)
+                return false;
+            return a * a + b * b == c * c;
+        }
+
+        List<PythagoreanTriplet> build() {
+            if (maxFactor < 0)
+                maxFactor = sum / 2;
+
+            List<PythagoreanTriplet> triplets = new ArrayList<>();
+            for (int a = 1; a <= maxFactor; a++) {
+                for (int b = a + 1; b <= maxFactor; b++) {
+                    int c = sum - b - a;
+                    if (c <= maxFactor && isPythagoreanTriplet(a, b, c)) {
+                        triplets.add(new PythagoreanTriplet(a, b, c));
+                        System.out.println(a + " " + b + " " + c);
+                    }
+                }
+            }
+            return triplets;
+        }
+    }
+}

@@ -1,0 +1,8 @@
+class CustomCheckedException extends Exception 
+{
+    //constructor
+ public CustomCheckedException(String message) {
+        super(message);
+   
+}
+}
